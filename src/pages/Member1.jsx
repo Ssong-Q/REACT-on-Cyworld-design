@@ -70,7 +70,7 @@ function Member1() {
               <ProfileLine>✨   INFJ / ENFJ</ProfileLine>
             </WrapperLeftBodyProfile>
             <WrapperLeftBodyFooter>
-              <MoodTitle>오늘의 날씨</MoodTitle>
+              <MoodTitle>오늘의 기분</MoodTitle>
               <MoodContents>
                 <MoodContentsValue>기쁨 😁</MoodContentsValue>
                 <MoodContentsValue>슬픔 😢</MoodContentsValue>
@@ -433,6 +433,7 @@ const NavigationItem = styled.div`
   text-align: center;
   line-height: 30px;
   cursor: pointer;
+  margin-bottom: 5px;
 `
 
 const NavigationItemMember1 = styled.div`
@@ -446,4 +447,5 @@ const NavigationItemMember1 = styled.div`
   text-align: center;
   line-height: 30px;
   cursor: pointer;
+  margin-bottom: 5px;
 `

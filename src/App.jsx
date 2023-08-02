@@ -1,6 +1,6 @@
 import reset from './style/reset';
 import { Global } from '@emotion/react';
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 import Router from "./shared/Router";
 import backgroundImage from "./images/background.png";
 // import { useState } from 'react';

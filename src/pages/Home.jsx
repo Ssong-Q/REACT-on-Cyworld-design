@@ -339,6 +339,7 @@ const NavigationItem = styled.div`
   text-align: center;
   line-height: 30px;
   cursor: pointer;
+  margin-bottom: 5px;
 `
 
 const NavigationItemHome = styled.div`
@@ -352,4 +353,5 @@ const NavigationItemHome = styled.div`
   text-align: center;
   line-height: 30px;
   cursor: pointer;
+  margin-bottom: 5px;
 `

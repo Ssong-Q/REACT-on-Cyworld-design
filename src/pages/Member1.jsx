@@ -295,7 +295,7 @@ const WrapperRight = styled.div`
   padding-left: 5px;
 `
 
-const WrapperRightHeader = styled.div`
+const WrapperRightHeader = styled.div` 
   width: 510px;
   display: flex;
   flex-direction: row;

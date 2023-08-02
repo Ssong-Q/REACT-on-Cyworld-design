@@ -344,7 +344,7 @@ const NavigationItem = styled.div`
 
 const NavigationItemHome = styled.div`
   background-color: white;
-  color: black;
+  color: black; 
   width: 60px;
   height: 30px;
   border: 1px solid black;

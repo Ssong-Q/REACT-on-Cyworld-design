@@ -34,6 +34,13 @@ function Home() {
     }
   };
 
+  const onClickClearComment = function () {
+    if(window.confirm("모든 일촌평을 지우시겠습니까?")) {
+      setComArray([]);
+      localStorage.removeItem("savedComment");
+    }
+  }
+
   const menuHome = () => {
     document.getElementById("navHome").style = "color: black; background-color: white;"
     document.getElementById("navMember1").style = "color: white; background-color: #298eb5;"
@@ -132,6 +139,7 @@ function Home() {
                 <CommentsCreate>
                   <CommentsInput value={comment} onChange={onChangeComment} />
                   <CommentsButton onClick={onClickAddComment}>남기기</CommentsButton>
+                  <CommentsButton onClick={onClickClearComment}>Clear</CommentsButton>
                 </CommentsCreate>
               </VisitorsComments>
             </WrapperRightBodyBottom>
@@ -392,11 +400,11 @@ const CommentsCreate = styled.div`
 
 const CommentsInput = styled.input`
   padding: 1px 4px;
-  width: 90%;
+  width: 85%;
 `
 
 const CommentsButton = styled.button`
-  margin-left: 10px;
+  margin-left: 5px;
   font-size: 10px;
 `
 

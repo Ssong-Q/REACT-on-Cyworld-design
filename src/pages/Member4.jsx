@@ -1,3 +1,12 @@
+/*
+23.08.02: menuMember4 페이지 내용 작성 및 NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
+
+To Do
+-Member4 페이지 사진 넣기
+-플레이리스트 노래 목록 추가 기능
+-플레이리스트 노래 목록 삭제 기능(+체크박스)
+*/
+
 import React from 'react'
 import styled from "@emotion/styled"
 import outerboxImage from "../images/outerbox.png";

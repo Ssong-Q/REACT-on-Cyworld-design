@@ -1,9 +1,9 @@
 /*
 23.08.02: menuMember4 페이지 내용 작성 + NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
-23.08.03: 노래 제목 및 아티스트 작성 기능 + 수정, 삭제, 확인 버튼 추가
+23.08.03: 사진 추가 + 노래 제목 및 아티스트 작성 기능 + 수정, 삭제, 확인 버튼 추가
 
 To Do
--Member4 페이지 사진 넣기
+-Member4 페이지 사진 넣기[V]
 -플레이리스트 노래 목록 작성 기능 [V]
 -플레이리스트 노래 추가 버튼(+버튼 클릭 시 입력 박스)
 -플레이리스트 노래 확인 버튼(+버튼 클릭 시 텍스트 박스)
@@ -13,7 +13,7 @@ To Do
 import React, { useState } from 'react';
 import styled from "@emotion/styled";
 import outerboxImage from "../images/outerbox.png";
-import myphotoImage from "../images/me.jpeg";
+import myphotoImage from "../images/youjin.png";
 import { useNavigate } from 'react-router-dom';
 
 function Member4() {
@@ -130,8 +130,8 @@ function Member4() {
                 <TitleSubtitle>TODAY CHOICE</TitleSubtitle>
                 <ButtonContainer>
                   <ButtonSmall onClick={menuHome}>수정</ButtonSmall>
-                  <ButtonSmall onClick={menuMember1}>삭제</ButtonSmall>
-                  <ButtonSmall onClick={menuMember2}>확인</ButtonSmall>
+                  <ButtonSmall onClick={menuHome}>삭제</ButtonSmall>
+                  <ButtonSmall onClick={menuHome}>확인</ButtonSmall>
                 </ButtonContainer>
               </WrapperRightBodyBottomTitle>
               <WrapperRIghtBodyBottomTable>

@@ -308,6 +308,7 @@ const WrapperRightHeader = styled.div`
 const WrapperRightHeaderTitle = styled.div`
   color: #55B2E4;
   font-size: 16px;
+  font-weight: 600;
 `
 
 const WrapperRightHeaderSetting = styled.div`

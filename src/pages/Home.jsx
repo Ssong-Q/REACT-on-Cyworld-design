@@ -4,9 +4,35 @@ import teamprofileImage from "../images/teamprofile.png";
 import outerboxImage from "../images/outerbox.png";
 import langImage from "../images/lang.png";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Home() {
   const navigate = useNavigate();
+  const savedData = localStorage.getItem("savedComment");
+  const initialComArray = savedData ? JSON.parse(savedData) : [];
+
+  const [comment, setComment] = useState("");
+  const [comArray, setComArray] = useState(initialComArray);
+  
+  const onChangeComment = function (event) {
+    setComment(event.target.value);
+  };
+
+  const onClickAddComment = function () {
+    if(window.confirm("일촌평을 남기시겠습니까?")) {
+      if (comment === "") {
+        alert("내용을 입력해주세요.")
+      } else {
+        if(comArray.length === 7) {
+          comArray.shift();
+        }
+        setComArray([...comArray, comment]);
+        setComment("");
+
+        localStorage.setItem("savedComment", JSON.stringify([...comArray, comment]));
+      }
+    }
+  };
 
   const menuHome = () => {
     document.getElementById("navHome").style = "color: black; background-color: white;"
@@ -91,7 +117,23 @@ function Home() {
               <FrontEndLanguageIcon></FrontEndLanguageIcon>
             </WrapperRightBodyTop>            
             <WrapperRightBodyBottom>
-              <VisitorsComments></VisitorsComments>
+              <VisitorsCommentsTitle>What friends say</VisitorsCommentsTitle>
+              <GrayLine3></GrayLine3>
+              <VisitorsComments>
+                <ul style={{marginLeft: "10px", minHeight: "130px"}}>
+                {comArray.filter((item,index) => {
+                  return index < 7;
+                }).map((item) => {
+                  return (
+                    <FriendsComments id="comments">{item}</FriendsComments>
+                  )
+                })}
+                </ul>
+                <CommentsCreate>
+                  <CommentsInput value={comment} onChange={onChangeComment} />
+                  <CommentsButton onClick={onClickAddComment}>남기기</CommentsButton>
+                </CommentsCreate>
+              </VisitorsComments>
             </WrapperRightBodyBottom>
           </WrapperRightBody>
         </WrapperRight>
@@ -260,6 +302,7 @@ const WrapperRightHeader = styled.div`
 const WrapperRightHeaderTitle = styled.div`
   color: #55B2E4;
   font-size: 16px;
+  font-weight: 600;
 `
 
 const WrapperRightHeaderSetting = styled.div`
@@ -276,6 +319,7 @@ const WrapperRightBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between; 
+  align-items: center;
   padding: 10px 10px;
 `
 
@@ -309,12 +353,51 @@ const FrontEndLanguageIcon = styled.div`
 `
 
 const WrapperRightBodyBottom = styled.div`
-  width: 100%;
+  width: 95%;
   height: 210px;
-  border: 1px solid black;
+  padding: 5px 0;
 `
 
+const VisitorsCommentsTitle = styled.div`
+  color: #55B2E4;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+`
+
+const GrayLine3 = styled.div`
+  border-top: 0.9px dashed gray;
+  margin: 4px 0 4px 0;
+` 
+
 const VisitorsComments = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const FriendsComments = styled.li`
+  font-size: 10px;
+  margin: 5px 0;
+  &::marker {
+    color: gray;
+  }
+`
+
+const CommentsCreate = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-contents: space-between;
+  margin-top: 5px;
+`
+
+const CommentsInput = styled.input`
+  padding: 1px 4px;
+  width: 90%;
+`
+
+const CommentsButton = styled.button`
+  margin-left: 10px;
+  font-size: 10px;
 `
 
 const Navigation = styled.div`

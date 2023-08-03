@@ -12,11 +12,16 @@ function Home() {
   const initialComArray = savedData ? JSON.parse(savedData) : [];
 
   const [comment, setComment] = useState("");
+  const [nickname, setNickname] = useState("");
   const [comArray, setComArray] = useState(initialComArray);
   
   const onChangeComment = function (event) {
     setComment(event.target.value);
   };
+
+  const onChangeNickname = function (event) {
+    setNickname(event.target.value);
+  }
 
   const onClickAddComment = function () {
     if(window.confirm("일촌평을 남기시겠습니까?")) {
@@ -26,10 +31,11 @@ function Home() {
         if(comArray.length === 7) {
           comArray.shift();
         }
-        setComArray([...comArray, comment]);
+        setComArray([...comArray, [nickname, comment]]);
         setComment("");
+        setNickname("");
 
-        localStorage.setItem("savedComment", JSON.stringify([...comArray, comment]));
+        localStorage.setItem("savedComment", JSON.stringify([...comArray, [nickname, comment]]));
       }
     }
   };
@@ -132,12 +138,13 @@ function Home() {
                   return index < 7;
                 }).map((item) => {
                   return (
-                    <FriendsComments id="comments">{item}</FriendsComments>
+                    <FriendsComments id="comments">{item[1]}      ({item[0]})</FriendsComments>
                   )
                 })}
                 </ul>
                 <CommentsCreate>
-                  <CommentsInput value={comment} onChange={onChangeComment} />
+                  <CommentNicknameInput value={nickname} onChange={onChangeNickname} placeholder='닉네임'></CommentNicknameInput>
+                  <CommentsInput value={comment} onChange={onChangeComment} placeholder='내용을 입력해 주세요' />
                   <CommentsButton onClick={onClickAddComment}>남기기</CommentsButton>
                   <CommentsButton onClick={onClickClearComment}>Clear</CommentsButton>
                 </CommentsCreate>
@@ -386,6 +393,8 @@ const VisitorsComments = styled.div`
 const FriendsComments = styled.li`
   font-size: 10px;
   margin: 5px 0;
+  border-bottom: 0.9px dotted gray;
+  padding: 2px 0;
   &::marker {
     color: gray;
   }
@@ -398,9 +407,25 @@ const CommentsCreate = styled.div`
   margin-top: 5px;
 `
 
+const CommentNicknameInput = styled.input`
+  padding: 1px 2px;
+  width: 20%;
+  margin-right: 5px;
+
+  &::placeholder{
+    color: gray;
+    font-size: 8px;
+  }
+`
+
 const CommentsInput = styled.input`
   padding: 1px 4px;
-  width: 85%;
+  width: 62%;
+
+  &::placeholder{
+    color: gray;
+    font-size: 8px;
+  }
 `
 
 const CommentsButton = styled.button`

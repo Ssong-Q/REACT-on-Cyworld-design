@@ -15,8 +15,8 @@ function App() {
     </>
   )
 }
-
 export default App;
+
 
 const Background = styled.div`
   width: 1024px;
@@ -24,3 +24,5 @@ const Background = styled.div`
   background-image: url(${backgroundImage});
   padding: 20px 0px 0px 20px;
 `
+
+

@@ -1,11 +1,32 @@
-import React from 'react';
-import styled from "@emotion/styled"
+import { useEffect, useState } from 'react'; 
+import styled from "@emotion/styled";
 import teamprofileImage from "../images/teamprofile.png";
 import outerboxImage from "../images/outerbox.png";
 import langImage from "../images/lang.png";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 function Home() {
+  const [weather, setWeather] = useState({
+    temp: 0,
+    icon: '',
+  });
+
+  useEffect(() => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric&appid=40c4bb62df9d0b4891135b64068b1517`;
+    axios.get(url)
+      .then((responseData) => {
+        const data = responseData.data;
+        setWeather({
+          temp: data.main.temp,
+          icon: data.weather[0].icon,
+        });
+      })
+      .catch((error) => console.log(error));
+  }, []);
+  
   const navigate = useNavigate();
 
   const menuHome = () => {
@@ -48,6 +69,7 @@ function Home() {
   }
 
   return (
+              
     <Outerbox>
       <Wrapper>
         <WrapperLeft>
@@ -71,11 +93,13 @@ function Home() {
               <ProfileLine>🙋🏻‍♀️   최유진</ProfileLine>
             </WrapperLeftBodyProfile>
             <WrapperLeftBodyFooter>
-              <WeatherTitle>오늘의 날씨</WeatherTitle>
-              <WeatherContents>
-                <WeatherContentsIcon>☀️</WeatherContentsIcon>
-                <WeatherContentsTemp>33℃</WeatherContentsTemp>
-              </WeatherContents>
+            <WeatherTitle>오늘의 날씨</WeatherTitle>
+    <WeatherContents>
+      <WeatherContentsIcon>
+        <img src={`http://openweathermap.org/img/w/${weather.icon}.png`} alt="weather icon" />
+      </WeatherContentsIcon>
+      <WeatherContentsTemp>{Math.round(weather.temp)}℃</WeatherContentsTemp>
+    </WeatherContents>
             </WrapperLeftBodyFooter>
           </WrapperLeftBody>
         </WrapperLeft>
@@ -217,7 +241,7 @@ const WeatherTitle = styled.div`
 
 const WeatherContents = styled.div`
   width: 100%;
-  height: 20px;
+  height: 25px;
   display: flex; 
   justify-content: space-between;
   border: 1px solid black;
@@ -226,16 +250,19 @@ const WeatherContents = styled.div`
 const WeatherContentsIcon = styled.div`
   width: 20px;
   height: 100%;
-  margin-left: 5px;
-  border: 1px solid black;
+  position: relative;
+  left: 1px;
+  top: -11px;
+  /* border: 1px solid black; */
 `
 
 const WeatherContentsTemp = styled.div`
-  width: 20px;
+  width: 30px;
   height: 100%;
   margin-right: 15px;
   font-size: 12px;
-  border: 1px solid black;
+  margin-top: 3px;
+  /* border: 1px solid black; */
 `
 
 const WrapperRight = styled.div`

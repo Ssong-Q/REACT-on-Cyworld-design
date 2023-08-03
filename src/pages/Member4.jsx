@@ -100,89 +100,89 @@ function Member4() {
               <GrayLine2></GrayLine2>
               <RightBodyTopContents>
                 <RightBodyTopContentsDescription>
-                <div style={{fontSize: '10px', fontWeight: 500, marginBottom: '2px', marginTop: '2px'}}>장점</div>
+                  <div style={{ fontSize: '10px', fontWeight: 500, marginBottom: '2px', marginTop: '2px' }}>장점</div>
                   1. 계획적인 편이에요. <br />
                   2. 필요한 상황이라면 E 성향을 얼마든지 끌어낼 수 있어요. <br />
                   3. 취미가 많은 편이에요. 덕분에 스트레스 관리를 잘하는 편인 거 같아요. <br /><br />
-                <div style={{fontSize: '10px', fontWeight: 500, marginBottom: '2px', marginTop: '2px'}}>단점</div>
+                  <div style={{ fontSize: '10px', fontWeight: 500, marginBottom: '2px', marginTop: '2px' }}>단점</div>
                   1. 계획을 지키지 못하면 스트레스를 많이 받아요.<br />
                   2. 새로운 일을 시작할 때 너무 많은 시간을 고민하는 데 허비해요.<br /><br />
-                <div style={{fontSize: '10px', fontWeight: 500, marginBottom: '2px', marginTop: '2px'}}>협업 과정에서 나만의 스타일</div>
+                  <div style={{ fontSize: '10px', fontWeight: 500, marginBottom: '2px', marginTop: '2px' }}>협업 과정에서 나만의 스타일</div>
                   - 먼저 나서는 편은 아니지만 할 사람이 없을 경우에 팀을 이끄는 걸 부담스러워하지는 않아요.<br />
                   - 의견이 많으면 나중에 거기서부터 뻗어갈 수 있는 또 다른 이야기들이 더 많아진다고 생각해서 조금 주제를 벗어난 의견까지도 일단 전부 다 들어보는 걸 좋아해요. <br />
                 </RightBodyTopContentsDescription>
               </RightBodyTopContents>
-            </WrapperRightBodyTop>            
+            </WrapperRightBodyTop>
             <WrapperRightBodyBottom>
               <WrapperRightBodyBottomTitle>
                 <TitleTitle>나만의 플레이리스트</TitleTitle>
                 <TitleSubtitle>TODAY CHOICE</TitleSubtitle>
               </WrapperRightBodyBottomTitle>
               <WrapperRIghtBodyBottomTable>
-                <tr style={{width: '100%', height: '20px'}}>
-                  <TableHeader style={{width: "8%", textAlign: "center"}}><input type="checkbox" name="" id="" style={{width: "12px", height: "12px"}}/></TableHeader>
-                  <TableHeader style={{width: "12%", textAlign: "center"}}>번호</TableHeader>
-                  <TableHeader style={{width: "55%", textAlign: "center"}}>곡명</TableHeader>
-                  <TableHeader style={{width: "25%", textAlign: "center"}}>아티스트</TableHeader>
+                <tr style={{ width: '100%', height: '20px' }}>
+                  <TableHeader style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableHeader>
+                  <TableHeader style={{ width: "12%", textAlign: "center" }}>번호</TableHeader>
+                  <TableHeader style={{ width: "55%", textAlign: "center" }}>곡명</TableHeader>
+                  <TableHeader style={{ width: "25%", textAlign: "center" }}>아티스트</TableHeader>
                 </tr>
-                <tr style={{width: '100%', height: '20px'}}>
-                  <TableData style={{width: "8%", textAlign: "center"}}><input type="checkbox" name="" id="" style={{width: "12px", height: "12px"}}/></TableData>
-                  <TableData style={{width: "12%", textAlign: "center"}}>1</TableData>
-                  <TableData style={{width: "55%", textAlign: "left"}}></TableData>
-                  <TableData style={{width: "25%", textAlign: "left"}}></TableData>
+                <tr style={{ width: '100%', height: '20px' }}>
+                  <TableData style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableData>
+                  <TableData style={{ width: "12%", textAlign: "center" }}>1</TableData>
+                  <TableData style={{ width: "55%", textAlign: "left" }}>Your Song Title 1</TableData>
+                  <TableData style={{ width: "25%", textAlign: "left" }}>Artist Name 1</TableData>
                 </tr>
-                <tr style={{width: '100%', height: '20px'}}>
-                  <TableData style={{width: "8%", textAlign: "center"}}><input type="checkbox" name="" id="" style={{width: "12px", height: "12px"}}/></TableData>
-                  <TableData style={{width: "12%", textAlign: "center"}}>2</TableData>
-                  <TableData style={{width: "55%", textAlign: "left"}}></TableData>
-                  <TableData style={{width: "25%", textAlign: "left"}}></TableData>
-                </tr>
-                <tr style={{width: '100%', height: '20px'}}>
-                  <TableData style={{width: "8%", textAlign: "center"}}><input type="checkbox" name="" id="" style={{width: "12px", height: "12px"}}/></TableData>
-                  <TableData style={{width: "12%", textAlign: "center"}}>3</TableData>
-                  <TableData style={{width: "55%", textAlign: "left"}}></TableData>
-                  <TableData style={{width: "25%", textAlign: "left"}}></TableData>
-                </tr>
-                <tr style={{width: '100%', height: '20px'}}>
-                  <TableData style={{width: "8%", textAlign: "center"}}><input type="checkbox" name="" id="" style={{width: "12px", height: "12px"}}/></TableData>
-                  <TableData style={{width: "12%", textAlign: "center"}}>4</TableData>
-                  <TableData style={{width: "55%", textAlign: "left"}}></TableData>
-                  <TableData style={{width: "25%", textAlign: "left"}}></TableData>
-                </tr>
-                <tr style={{width: '100%', height: '20px'}}>
-                  <TableData style={{width: "8%", textAlign: "center"}}><input type="checkbox" name="" id="" style={{width: "12px", height: "12px"}}/></TableData>
-                  <TableData style={{width: "12%", textAlign: "center"}}>5</TableData>
-                  <TableData style={{width: "55%", textAlign: "left"}}></TableData>
-                  <TableData style={{width: "25%", textAlign: "left"}}></TableData>
-                </tr>
-              </WrapperRIghtBodyBottomTable>
-            </WrapperRightBodyBottom>
-          </WrapperRightBody>
-        </WrapperRight>
-        <Navigation>
-          <NavigationItem id="navHome" onClick={() => {
-            navigate("/");
-            menuHome();
-          }}>홈</NavigationItem>
-          <NavigationItem id="navMember1" onClick={() => {
-            navigate("/Member1");
-            menuMember1();
-          }}>송규경</NavigationItem>
-          <NavigationItem id="navMember2" onClick={() => {
-            navigate("/Member2");
-            menuMember2();
-          }}>백채은</NavigationItem>
-          <NavigationItem id="navMember3" onClick={() => {
-            navigate("/Member3");
-            menuMember3();
-          }}>김하리</NavigationItem>
-          <NavigationItemMember4 id="navMember4" onClick={() => {
-            navigate("/Member4");
-            menuMember4();
-          }}>최유진</NavigationItemMember4>
-        </Navigation>
-      </Wrapper>
-    </Outerbox>
+              <tr style={{ width: '100%', height: '20px' }}>
+                <TableData style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableData>
+                <TableData style={{ width: "12%", textAlign: "center" }}>2</TableData>
+                <TableData style={{ width: "55%", textAlign: "left" }}></TableData>
+                <TableData style={{ width: "25%", textAlign: "left" }}></TableData>
+              </tr>
+              <tr style={{ width: '100%', height: '20px' }}>
+                <TableData style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableData>
+                <TableData style={{ width: "12%", textAlign: "center" }}>3</TableData>
+                <TableData style={{ width: "55%", textAlign: "left" }}></TableData>
+                <TableData style={{ width: "25%", textAlign: "left" }}></TableData>
+              </tr>
+              <tr style={{ width: '100%', height: '20px' }}>
+                <TableData style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableData>
+                <TableData style={{ width: "12%", textAlign: "center" }}>4</TableData>
+                <TableData style={{ width: "55%", textAlign: "left" }}></TableData>
+                <TableData style={{ width: "25%", textAlign: "left" }}></TableData>
+              </tr>
+              <tr style={{ width: '100%', height: '20px' }}>
+                <TableData style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableData>
+                <TableData style={{ width: "12%", textAlign: "center" }}>5</TableData>
+                <TableData style={{ width: "55%", textAlign: "left" }}></TableData>
+                <TableData style={{ width: "25%", textAlign: "left" }}></TableData>
+              </tr>
+            </WrapperRIghtBodyBottomTable>
+          </WrapperRightBodyBottom>
+        </WrapperRightBody>
+      </WrapperRight>
+      <Navigation>
+        <NavigationItem id="navHome" onClick={() => {
+          navigate("/");
+          menuHome();
+        }}>홈</NavigationItem>
+        <NavigationItem id="navMember1" onClick={() => {
+          navigate("/Member1");
+          menuMember1();
+        }}>송규경</NavigationItem>
+        <NavigationItem id="navMember2" onClick={() => {
+          navigate("/Member2");
+          menuMember2();
+        }}>백채은</NavigationItem>
+        <NavigationItem id="navMember3" onClick={() => {
+          navigate("/Member3");
+          menuMember3();
+        }}>김하리</NavigationItem>
+        <NavigationItemMember4 id="navMember4" onClick={() => {
+          navigate("/Member4");
+          menuMember4();
+        }}>최유진</NavigationItemMember4>
+      </Navigation>
+    </Wrapper>
+    </Outerbox >
   )
 }
 
@@ -251,7 +251,7 @@ const GrayBox = styled.div`
 const GrayLine1 = styled.div`
   border-top: 1px dotted black;
   margin: 12px 0px;
-` 
+`
 
 const WrapperLeftBodyProfile = styled.div`
   width: 148px;
@@ -354,7 +354,7 @@ const GrayLine2 = styled.div`
   border-top: 0.9px solid gray;
   width: 93%;
   margin: 2px 0 6px 0;
-` 
+`
 
 const RightBodyTopContents = styled.div`
   width: 95%;

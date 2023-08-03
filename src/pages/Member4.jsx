@@ -1,10 +1,13 @@
 /*
-23.08.02: menuMember4 페이지 내용 작성 및 NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
+23.08.02: menuMember4 페이지 내용 작성 + NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
+23.08.03: 노래 제목 및 아티스트 작성 기능 + 수정, 삭제, 확인 버튼 추가
 
 To Do
 -Member4 페이지 사진 넣기
--플레이리스트 노래 목록 추가 기능
--플레이리스트 노래 목록 삭제 기능(+체크박스)
+-플레이리스트 노래 목록 작성 기능 [V]
+-플레이리스트 노래 추가 버튼(+버튼 클릭 시 입력 박스)
+-플레이리스트 노래 확인 버튼(+버튼 클릭 시 텍스트 박스)
+-플레이리스트 노래 삭제 버튼(+체크박스로 삭제)
 */
 
 import React, { useState } from 'react';
@@ -15,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Member4() {
   const navigate = useNavigate();
-  
+
   const [songs, setSongs] = useState([
     { id: 1, songTitle: '', artistName: '' },
     { id: 2, songTitle: '', artistName: '' },
@@ -125,6 +128,11 @@ function Member4() {
               <WrapperRightBodyBottomTitle>
                 <TitleTitle>나만의 플레이리스트</TitleTitle>
                 <TitleSubtitle>TODAY CHOICE</TitleSubtitle>
+                <ButtonContainer>
+                  <ButtonSmall onClick={menuHome}>수정</ButtonSmall>
+                  <ButtonSmall onClick={menuMember1}>삭제</ButtonSmall>
+                  <ButtonSmall onClick={menuMember2}>확인</ButtonSmall>
+                </ButtonContainer>
               </WrapperRightBodyBottomTitle>
               <WrapperRIghtBodyBottomTable>
                 <tbody>
@@ -135,39 +143,39 @@ function Member4() {
                     <TableHeader style={{ width: "25%", textAlign: "center" }}>아티스트</TableHeader>
                   </tr>
                   {songs.map((song) => (
-              <tr key={song.id} style={{ width: '100%', height: '20px' }}>
-                <TableData style={{ width: "8%", textAlign: "center" }}>
-                  <input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} />
-                </TableData>
-                <TableData style={{ width: "12%", textAlign: "center" }}>{song.id}</TableData>
-                <TableData style={{ width: "55%", textAlign: "left" }}>
-                  <input
-                    type="text"
-                    value={song.songTitle}
-                    onChange={(e) => {
-                      const updatedSongs = songs.map((s) =>
-                        s.id === song.id ? { ...s, songTitle: e.target.value } : s
-                      );
-                      setSongs(updatedSongs);
-                    }}
-                    placeholder="Song Title"
-                  />
-                </TableData>
-                <TableData style={{ width: "25%", textAlign: "left" }}>
-                  <input
-                    type="text"
-                    value={song.artistName}
-                    onChange={(e) => {
-                      const updatedSongs = songs.map((s) =>
-                        s.id === song.id ? { ...s, artistName: e.target.value } : s
-                      );
-                      setSongs(updatedSongs);
-                    }}
-                    placeholder="Artist Name"
-                  />
-                </TableData>
-              </tr>
-            ))}
+                    <tr key={song.id} style={{ width: '100%', height: '20px' }}>
+                      <TableData style={{ width: "8%", textAlign: "center" }}>
+                        <input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} />
+                      </TableData>
+                      <TableData style={{ width: "12%", textAlign: "center" }}>{song.id}</TableData>
+                      <TableData style={{ width: "55%", textAlign: "left" }}>
+                        <input
+                          type="text"
+                          value={song.songTitle}
+                          onChange={(e) => {
+                            const updatedSongs = songs.map((s) =>
+                              s.id === song.id ? { ...s, songTitle: e.target.value } : s
+                            );
+                            setSongs(updatedSongs);
+                          }}
+                          placeholder="Song Title"
+                        />
+                      </TableData>
+                      <TableData style={{ width: "25%", textAlign: "left" }}>
+                        <input
+                          type="text"
+                          value={song.artistName}
+                          onChange={(e) => {
+                            const updatedSongs = songs.map((s) =>
+                              s.id === song.id ? { ...s, artistName: e.target.value } : s
+                            );
+                            setSongs(updatedSongs);
+                          }}
+                          placeholder="Artist Name"
+                        />
+                      </TableData>
+                    </tr>
+                  ))}
                 </tbody>
               </WrapperRIghtBodyBottomTable>
             </WrapperRightBodyBottom>
@@ -196,33 +204,54 @@ function Member4() {
           }}>최유진</NavigationItemMember4>
         </Navigation>
       </Wrapper>
-      </Outerbox>
-      );
+    </Outerbox>
+  );
 };
+export default Member4;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 168px;
+`;
 
-      export default Member4;
+const Button = styled.button`
+  background-color: #298eb5;
+  color: white;
+  border: none;
+  cursor: pointer;
 
-      const Outerbox = styled.div`
+  &:hover {
+    background-color: #0071a0;
+  }
+`;
+
+const ButtonSmall = styled(Button)`
+  font-size: 10px;
+  padding: 2px 5px;
+  margin-left: 8px;
+`;
+
+const Outerbox = styled.div`
       width: 808px;
       height: 544px;
       background-image: url(${outerboxImage});
       `
 
-      const Wrapper = styled.div`
+const Wrapper = styled.div`
       display:flex;
       flex-direction: row;
       padding: 32px 0px 0px 32px;
       `
 
-      const WrapperLeft = styled.div`
+const WrapperLeft = styled.div`
       width: 208px;
       height: 472px;
       display: flex;
       flex-direction: column;
       `
 
-      const WrapperLeftHeader = styled.div`
+const WrapperLeftHeader = styled.div`
       width: 100%;
       height: 30px;
       display: flex;
@@ -231,14 +260,14 @@ function Member4() {
       align-items: center;
       `
 
-      const Today = styled.div`
+const Today = styled.div`
       font-size: 9px;
       `
 
-      const TodayContents = styled.span`
+const TodayContents = styled.span`
       `
 
-      const WrapperLeftBody = styled.div`
+const WrapperLeftBody = styled.div`
       width: 100%;
       height: 100%;
       border: 1px solid gray;
@@ -250,25 +279,25 @@ function Member4() {
       padding: 20px 30px;
       `
 
-      const WrapperLeftBodyHeader = styled.div`
+const WrapperLeftBodyHeader = styled.div`
       width: 100%;
       display: flex;
       flex-direction: column;
       `
 
-      const GrayBox = styled.div`
+const GrayBox = styled.div`
       background-image: url(${myphotoImage});
       background-size: 148px 133px;
       width: 148px;
       height: 133px;
       `
 
-      const GrayLine1 = styled.div`
+const GrayLine1 = styled.div`
       border-top: 1px dotted black;
       margin: 12px 0px;
       `
 
-      const WrapperLeftBodyProfile = styled.div`
+const WrapperLeftBodyProfile = styled.div`
       width: 148px;
       height: 150px;
       display: flex;
@@ -276,13 +305,13 @@ function Member4() {
       margin: 0px 0px 30px 0px;
       `
 
-      const ProfileLine = styled.div`
+const ProfileLine = styled.div`
       font-size: 5px;
       font-weight: 400;
       margin: 4px 0;
       `
 
-      const WrapperLeftBodyFooter = styled.div`
+const WrapperLeftBodyFooter = styled.div`
       width: 148px;
       height: 50px;
       display: flex;
@@ -292,22 +321,22 @@ function Member4() {
       color: gray;
       `
 
-      const MoodTitle = styled.div`
+const MoodTitle = styled.div`
       `
 
-      const MoodContents = styled.select`
+const MoodContents = styled.select`
       width: 100%;
       border: 1px solid gray;
       `
 
-      const MoodContentsValue = styled.option`
+const MoodContentsValue = styled.option`
       width: inherit;
       padding: 2px 10px 2px 5px;
       border: 0 none;
       font: gray;
       `
 
-      const WrapperRight = styled.div`
+const WrapperRight = styled.div`
       width: 524px;
       height: 472px;
       display: flex;
@@ -316,7 +345,7 @@ function Member4() {
       padding-left: 5px;
       `
 
-      const WrapperRightHeader = styled.div`
+const WrapperRightHeader = styled.div`
       width: 510px;
       display: flex;
       flex-direction: row;
@@ -326,17 +355,17 @@ function Member4() {
       margin: 0 0 5px 0;
       `
 
-      const WrapperRightHeaderTitle = styled.div`
+const WrapperRightHeaderTitle = styled.div`
       color: #55B2E4;
       font-size: 16px;
       `
 
-      const WrapperRightHeaderSetting = styled.div`
+const WrapperRightHeaderSetting = styled.div`
       color: #55B2E4;
       font-size: 9px;
       `
 
-      const WrapperRightBody = styled.div`
+const WrapperRightBody = styled.div`
       width: 510px;
       height: 445px;
       border: 1px solid gray;
@@ -348,7 +377,7 @@ function Member4() {
       padding: 10px 10px;
       `
 
-      const WrapperRightBodyTop = styled.div`
+const WrapperRightBodyTop = styled.div`
       width: 100%;
       height: 210px;
       display: flex;
@@ -358,20 +387,20 @@ function Member4() {
       margin-bottom: 40px;
       `
 
-      const RightBodyTopTitle = styled.div`
+const RightBodyTopTitle = styled.div`
       width: 93%;
       font-size: 11px;
       font-weight: 600;
       padding: 0 0 3px 0;
       `
 
-      const GrayLine2 = styled.div`
+const GrayLine2 = styled.div`
       border-top: 0.9px solid gray;
       width: 93%;
       margin: 2px 0 6px 0;
       `
 
-      const RightBodyTopContents = styled.div`
+const RightBodyTopContents = styled.div`
       width: 95%;
       height: 80%;
       display: flex;
@@ -380,41 +409,41 @@ function Member4() {
       padding: 0 5px;
       `
 
-      const RightBodyTopContentsDescription = styled.div`
+const RightBodyTopContentsDescription = styled.div`
       line-height: 1.3;
       `
 
-      const WrapperRightBodyBottom = styled.div`
+const WrapperRightBodyBottom = styled.div`
       width: 100%;
       height: 190px;
       `
 
-      const WrapperRightBodyBottomTitle = styled.div`
+const WrapperRightBodyBottomTitle = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
       padding: 1px 10px;
       `
 
-      const TitleTitle = styled.div`
+const TitleTitle = styled.div`
       color: #55B2E4;
       font-size: 12px;
       font-weight: 700;
       `
 
-      const TitleSubtitle = styled.div`
+const TitleSubtitle = styled.div`
       font-size: 7px;
       font-weight: 500;
       padding-left: 5px;
       `
 
-      const WrapperRIghtBodyBottomTable = styled.table`
+const WrapperRIghtBodyBottomTable = styled.table`
       width: 100%;
       margin-top: 5px;
       border-spacing: 0;
       `
 
-      const TableHeader = styled.th`
+const TableHeader = styled.th`
       background-color: #eeeeee;
       font-size: 10px;
       font-weight: 700;
@@ -424,7 +453,7 @@ function Member4() {
       padding-top: 3px;
      `
 
-      const TableData = styled.td`
+const TableData = styled.td`
       border-bottom: 1px dotted #cbcbcc;
       font-size: 10px;
       font-weight: 400;
@@ -432,7 +461,7 @@ function Member4() {
       padding-top: 4px;
       `
 
-      const Navigation = styled.div`
+const Navigation = styled.div`
       width: 62px;
       height: 100px;
       display: flex;
@@ -443,7 +472,7 @@ function Member4() {
       top: 110px;
       `
 
-      const NavigationItem = styled.div`
+const NavigationItem = styled.div`
       width: 60px;
       height: 30px;
       background-color: #298eb5;
@@ -457,7 +486,7 @@ function Member4() {
       margin-bottom: 5px;
       `
 
-      const NavigationItemMember4 = styled.div`
+const NavigationItemMember4 = styled.div`
       background-color: white;
       color: black;
       width: 60px;

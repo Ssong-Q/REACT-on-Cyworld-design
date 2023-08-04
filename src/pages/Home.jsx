@@ -86,6 +86,23 @@ function Home() {
     document.getElementById("navMember4").style = "color: black; background-color: white;"
   }
 
+  const getRandomToday = function() {
+    const randomToday = Math.floor((Math.random() + 1) * 10);
+    localStorage.setItem("randomToday", JSON.stringify(randomToday));
+    return randomToday;
+  }
+
+  const getRandomTotal = function(min, max) {
+    const randomTotal = Math.floor(Math.random() * (max - min) + min);
+    localStorage.setItem("randomTotal", JSON.stringify(randomTotal));
+    return randomTotal;
+  }
+
+  const savedRandomToday = localStorage.getItem("randomToday");
+  const initialRandomToday = savedRandomToday ? JSON.parse(savedRandomToday) : getRandomToday();
+  const savedRandomTotal = localStorage.getItem("randomTotal");
+  const initialRandomTotal = savedRandomTotal ? JSON.parse(savedRandomTotal) : getRandomTotal(1000, 5000);
+
   return (
     <Outerbox>
       <Wrapper>
@@ -93,9 +110,9 @@ function Home() {
           <WrapperLeftHeader>
             <Today>
               <TodayContents>TODAY </TodayContents>
-              <TodayContents>0 </TodayContents>
+              <TodayContents>{initialRandomToday} </TodayContents>
               <TodayContents>| TOTAL </TodayContents>
-              <TodayContents>12345</TodayContents>
+              <TodayContents>{initialRandomTotal}</TodayContents>
             </Today>
           </WrapperLeftHeader>
           <WrapperLeftBody>

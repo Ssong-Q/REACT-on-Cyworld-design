@@ -46,6 +46,11 @@ function Member1() {
     document.getElementById("navMember4").style = "color: black; background-color: white;"
   }
 
+  const savedRandomToday = localStorage.getItem("randomToday");
+  const initialRandomToday = JSON.parse(savedRandomToday);
+  const savedRandomTotal = localStorage.getItem("randomTotal");
+  const initialRandomTotal = JSON.parse(savedRandomTotal);
+
   return (
     <Outerbox>
       <Wrapper>
@@ -53,9 +58,9 @@ function Member1() {
           <WrapperLeftHeader>
             <Today>
               <TodayContents>TODAY </TodayContents>
-              <TodayContents>0 </TodayContents>
+              <TodayContents>{initialRandomToday} </TodayContents>
               <TodayContents>| TOTAL </TodayContents>
-              <TodayContents>12345</TodayContents>
+              <TodayContents>{initialRandomTotal}</TodayContents>
             </Today>
           </WrapperLeftHeader>
           <WrapperLeftBody>

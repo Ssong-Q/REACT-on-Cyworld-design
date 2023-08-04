@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-
 function Home() {
   const [weather, setWeather] = useState({
     temp: 0,
@@ -28,6 +27,44 @@ function Home() {
   }, []);
   
   const navigate = useNavigate();
+  const savedData = localStorage.getItem("savedComment");
+  const initialComArray = savedData ? JSON.parse(savedData) : [];
+
+  const [comment, setComment] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [comArray, setComArray] = useState(initialComArray);
+  
+  const onChangeComment = function (event) {
+    setComment(event.target.value);
+  };
+
+  const onChangeNickname = function (event) {
+    setNickname(event.target.value);
+  }
+
+  const onClickAddComment = function () {
+    if(window.confirm("일촌평을 남기시겠습니까?")) {
+      if (comment === "") {
+        alert("내용을 입력해주세요.")
+      } else {
+        if(comArray.length === 5) {
+          comArray.shift();
+        }
+        setComArray([...comArray, [nickname, comment]]);
+        setComment("");
+        setNickname("");
+
+        localStorage.setItem("savedComment", JSON.stringify([...comArray, [nickname, comment]]));
+      }
+    }
+  };
+
+  const onClickClearComment = function () {
+    if(window.confirm("모든 일촌평을 지우시겠습니까?")) {
+      setComArray([]);
+      localStorage.removeItem("savedComment");
+    }
+  }
 
   const menuHome = () => {
     document.getElementById("navHome").style = "color: black; background-color: white;"
@@ -68,6 +105,23 @@ function Home() {
     document.getElementById("navMember4").style = "color: black; background-color: white;"
   }
 
+  const getRandomToday = function() {
+    const randomToday = Math.floor((Math.random() + 1) * 10);
+    localStorage.setItem("randomToday", JSON.stringify(randomToday));
+    return randomToday;
+  }
+
+  const getRandomTotal = function(min, max) {
+    const randomTotal = Math.floor(Math.random() * (max - min) + min);
+    localStorage.setItem("randomTotal", JSON.stringify(randomTotal));
+    return randomTotal;
+  }
+
+  const savedRandomToday = localStorage.getItem("randomToday");
+  const initialRandomToday = savedRandomToday ? JSON.parse(savedRandomToday) : getRandomToday();
+  const savedRandomTotal = localStorage.getItem("randomTotal");
+  const initialRandomTotal = savedRandomTotal ? JSON.parse(savedRandomTotal) : getRandomTotal(1000, 5000);
+
   return (
               
     <Outerbox>
@@ -76,9 +130,9 @@ function Home() {
           <WrapperLeftHeader>
             <Today>
               <TodayContents>TODAY </TodayContents>
-              <TodayContents>0 </TodayContents>
+              <TodayContents>{initialRandomToday} </TodayContents>
               <TodayContents>| TOTAL </TodayContents>
-              <TodayContents>12345</TodayContents>
+              <TodayContents>{initialRandomTotal}</TodayContents>
             </Today>
           </WrapperLeftHeader>
           <WrapperLeftBody>
@@ -115,7 +169,25 @@ function Home() {
               <FrontEndLanguageIcon></FrontEndLanguageIcon>
             </WrapperRightBodyTop>            
             <WrapperRightBodyBottom>
-              <VisitorsComments></VisitorsComments>
+              <VisitorsCommentsTitle>What friends say</VisitorsCommentsTitle>
+              <GrayLine3></GrayLine3>
+              <VisitorsComments>
+                <ul style={{marginLeft: "10px", minHeight: "130px"}}>
+                {comArray.filter((item,index) => {
+                  return index < 5;
+                }).map((item) => {
+                  return (
+                    <FriendsComments id="comments">{item[1]}      ({item[0]})</FriendsComments>
+                  )
+                })}
+                </ul>
+                <CommentsCreate>
+                  <CommentNicknameInput value={nickname} onChange={onChangeNickname} placeholder='닉네임'></CommentNicknameInput>
+                  <CommentsInput value={comment} onChange={onChangeComment} placeholder='내용을 입력해 주세요' />
+                  <CommentsButton onClick={onClickAddComment}>남기기</CommentsButton>
+                  <CommentsButton onClick={onClickClearComment}>Clear</CommentsButton>
+                </CommentsCreate>
+              </VisitorsComments>
             </WrapperRightBodyBottom>
           </WrapperRightBody>
         </WrapperRight>
@@ -287,6 +359,7 @@ const WrapperRightHeader = styled.div`
 const WrapperRightHeaderTitle = styled.div`
   color: #55B2E4;
   font-size: 16px;
+  font-weight: 600;
 `
 
 const WrapperRightHeaderSetting = styled.div`
@@ -303,6 +376,7 @@ const WrapperRightBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between; 
+  align-items: center;
   padding: 10px 10px;
 `
 
@@ -336,12 +410,69 @@ const FrontEndLanguageIcon = styled.div`
 `
 
 const WrapperRightBodyBottom = styled.div`
-  width: 100%;
+  width: 95%;
   height: 210px;
-  border: 1px solid black;
+  padding: 5px 0;
 `
 
+const VisitorsCommentsTitle = styled.div`
+  color: #55B2E4;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+`
+
+const GrayLine3 = styled.div`
+  border-top: 0.9px dashed gray;
+  margin: 4px 0 4px 0;
+` 
+
 const VisitorsComments = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const FriendsComments = styled.li`
+  font-size: 10px;
+  margin: 5px 0;
+  border-bottom: 0.9px dotted gray;
+  padding: 2px 0;
+  &::marker {
+    color: gray;
+  }
+`
+
+const CommentsCreate = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-contents: space-between;
+  margin-top: 5px;
+`
+
+const CommentNicknameInput = styled.input`
+  padding: 1px 2px;
+  width: 20%;
+  margin-right: 5px;
+
+  &::placeholder{
+    color: gray;
+    font-size: 8px;
+  }
+`
+
+const CommentsInput = styled.input`
+  padding: 1px 4px;
+  width: 62%;
+
+  &::placeholder{
+    color: gray;
+    font-size: 8px;
+  }
+`
+
+const CommentsButton = styled.button`
+  margin-left: 5px;
+  font-size: 10px;
 `
 
 const Navigation = styled.div`

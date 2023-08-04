@@ -28,7 +28,7 @@ function Home() {
       if (comment === "") {
         alert("내용을 입력해주세요.")
       } else {
-        if(comArray.length === 7) {
+        if(comArray.length === 5) {
           comArray.shift();
         }
         setComArray([...comArray, [nickname, comment]]);
@@ -135,7 +135,7 @@ function Home() {
               <VisitorsComments>
                 <ul style={{marginLeft: "10px", minHeight: "130px"}}>
                 {comArray.filter((item,index) => {
-                  return index < 7;
+                  return index < 5;
                 }).map((item) => {
                   return (
                     <FriendsComments id="comments">{item[1]}      ({item[0]})</FriendsComments>

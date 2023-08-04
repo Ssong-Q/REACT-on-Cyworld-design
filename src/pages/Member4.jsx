@@ -1,20 +1,21 @@
 /*
 23.08.02: menuMember4 페이지 내용 작성 
-          +NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
+          NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
 23.08.03: 사진 추가 
-          +노래 제목 및 아티스트 작성 기능 
-          +수정, 삭제, 확인 버튼 추가
+          노래 제목 및 아티스트 작성 기능 
+          수정, 삭제, 확인 버튼 추가
 23.08.04: 수정, 확인 버튼 전환 기능 
-          +버튼 클릭 시 <input>, <div>변환 기능
-          +체크박스 선택 후 삭제 버튼 클릭 시 제목, 아티스트 텍스트 삭제
+          버튼 클릭 시 <input>, <div>변환 기능
+          체크박스 선택 후 삭제 버튼 클릭 시 제목, 아티스트 텍스트 삭제
 
-To Do
+<To Do>
 -Member4 페이지 사진 넣기 [V]
 -플레이리스트 노래 목록 작성 기능 [V]
 -플레이리스트 노래 추가 버튼(+버튼 클릭 시 입력 박스) [V]
 -플레이리스트 노래 확인 버튼(+버튼 클릭 시 텍스트 박스) [V]
 -플레이리스트 노래 삭제 버튼(+체크박스로 삭제) [V]
--플레이리스트 <input>박스 있을 때와 없을 때, 위치 변화 문제 해결하기 
+-플레이리스트 <input>박스 있을 때와 없을 때, 위치 및 높이 변화 문제 해결하기
+-?삭제 버튼을 수정 버튼을 눌렀을 때만 사용 가능하게 할 것인가? 
 */
 
 import React, { useState } from 'react';
@@ -27,7 +28,7 @@ function Member4() {
   const navigate = useNavigate();
 
   const [checked, setChecked] = useState([]);
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(false);
   const [songs, setSongs] = useState([
     { id: 1, songTitle: '', artistName: '' },
     { id: 2, songTitle: '', artistName: '' },
@@ -67,6 +68,7 @@ function Member4() {
     document.getElementById("navMember3").style = "color: black; background-color: white;"
     document.getElementById("navMember4").style = "color: white; background-color: #298eb5;"
   }
+
   const menuMember4 = () => {
     document.getElementById("navHome").style = "color: white; background-color: #298eb5;"
     document.getElementById("navMember1").style = "color: white; background-color: #298eb5;"
@@ -74,6 +76,7 @@ function Member4() {
     document.getElementById("navMember3").style = "color: white; background-color: #298eb5;"
     document.getElementById("navMember4").style = "color: black; background-color: white;"
   }
+
   const handleConfirmClick = () => {
     setEditing((prevState) => !prevState);
   }

@@ -1,13 +1,19 @@
 /*
-23.08.02: menuMember4 페이지 내용 작성 + NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
-23.08.03: 사진 추가 + 노래 제목 및 아티스트 작성 기능 + 수정, 삭제, 확인 버튼 추가
-23.08.04: 수정, 확인 버튼 전환 기능 + 버튼 클릭 시 <input>, <div>변환 기능
+23.08.02: menuMember4 페이지 내용 작성 
+          +NavigationItemMember4 수정(인덱스 색깔 변화 딜레이 문제)
+23.08.03: 사진 추가 
+          +노래 제목 및 아티스트 작성 기능 
+          +수정, 삭제, 확인 버튼 추가
+23.08.04: 수정, 확인 버튼 전환 기능 
+          +버튼 클릭 시 <input>, <div>변환 기능
+          +체크박스 선택 후 삭제 버튼 클릭 시 제목, 아티스트 텍스트 삭제
+
 To Do
--Member4 페이지 사진 넣기[V]
+-Member4 페이지 사진 넣기 [V]
 -플레이리스트 노래 목록 작성 기능 [V]
 -플레이리스트 노래 추가 버튼(+버튼 클릭 시 입력 박스) [V]
 -플레이리스트 노래 확인 버튼(+버튼 클릭 시 텍스트 박스) [V]
--플레이리스트 노래 삭제 버튼(+체크박스로 삭제)
+-플레이리스트 노래 삭제 버튼(+체크박스로 삭제) [V]
 -플레이리스트 <input>박스 있을 때와 없을 때, 위치 변화 문제 해결하기 
 */
 
@@ -20,6 +26,7 @@ import { useNavigate } from 'react-router-dom';
 function Member4() {
   const navigate = useNavigate();
 
+  const [checked, setChecked] = useState([]);
   const [editing, setEditing] = useState(true);
   const [songs, setSongs] = useState([
     { id: 1, songTitle: '', artistName: '' },
@@ -70,6 +77,21 @@ function Member4() {
   const handleConfirmClick = () => {
     setEditing((prevState) => !prevState);
   }
+
+  const handleCheckboxToggle = (id) => {
+    setChecked((prevChecked) =>
+      prevChecked.includes(id) ? prevChecked.filter((item) => item !== id) : [...prevChecked, id]
+    );
+  };
+
+  const handleDeleteClick = () => {
+    setSongs((prevSongs) =>
+      prevSongs.map((song) =>
+        checked.includes(song.id) ? { ...song, songTitle: '', artistName: '' } : song
+      )
+    );
+    setChecked([]);
+  };
 
   return (
     <Outerbox>
@@ -137,7 +159,7 @@ function Member4() {
                   <ButtonSmall onClick={handleConfirmClick}>
                     {editing ? '확인' : '수정'}
                   </ButtonSmall>
-                  <ButtonSmall onClick={menuHome}>삭제</ButtonSmall>
+                  <ButtonSmall onClick={handleDeleteClick}>삭제</ButtonSmall>
                 </ButtonContainer>
               </WrapperRightBodyBottomTitle>
               <WrapperRIghtBodyBottomTable>
@@ -151,7 +173,9 @@ function Member4() {
                   {songs.map((song) => (
                     <tr key={song.id} style={{ width: '100%', height: '20px' }}>
                       <TableData style={{ width: "8%", textAlign: "center" }}>
-                        <input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} />
+                        <input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }}
+                        checked={checked.includes(song.id)} 
+                    onChange={() => handleCheckboxToggle(song.id)} />
                       </TableData>
                       <TableData style={{ width: "12%", textAlign: "center" }}>{song.id}</TableData>
                       <TableData style={{ width: "55%", textAlign: "left" }}>

@@ -81,6 +81,15 @@ function Member4() {
     setEditing((prevState) => !prevState);
   }
 
+  const handleFirstCheckboxToggle = () => {
+    if (checked.length === songs.length) {
+      setChecked([]);
+    } else {
+      const allIds = songs.map((song) => song.id);
+      setChecked(allIds);
+    }
+  };
+
   const handleCheckboxToggle = (id) => {
     setChecked((prevChecked) =>
       prevChecked.includes(id) ? prevChecked.filter((item) => item !== id) : [...prevChecked, id]
@@ -168,7 +177,12 @@ function Member4() {
               <WrapperRIghtBodyBottomTable>
                 <tbody>
                   <tr style={{ width: '100%', height: '20px' }}>
-                    <TableHeader style={{ width: "8%", textAlign: "center" }}><input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }} /></TableHeader>
+                    <TableHeader style={{ width: "8%", textAlign: "center" }}>
+                      <input type="checkbox" name="" id=""
+                        style={{ width: "12px", height: "12px" }}
+                        checked={checked.length === songs.length}
+                        onChange={handleFirstCheckboxToggle} />
+                    </TableHeader>
                     <TableHeader style={{ width: "12%", textAlign: "center" }}>번호</TableHeader>
                     <TableHeader style={{ width: "55%", textAlign: "center" }}>곡명</TableHeader>
                     <TableHeader style={{ width: "25%", textAlign: "center" }}>아티스트</TableHeader>
@@ -176,9 +190,10 @@ function Member4() {
                   {songs.map((song) => (
                     <tr key={song.id} style={{ width: '100%', height: '20px' }}>
                       <TableData style={{ width: "8%", textAlign: "center" }}>
-                        <input type="checkbox" name="" id="" style={{ width: "12px", height: "12px" }}
-                        checked={checked.includes(song.id)} 
-                    onChange={() => handleCheckboxToggle(song.id)} />
+                        <input type="checkbox" name="" id=""
+                          style={{ width: "12px", height: "12px" }}
+                          checked={checked.includes(song.id)}
+                          onChange={() => handleCheckboxToggle(song.id)} />
                       </TableData>
                       <TableData style={{ width: "12%", textAlign: "center" }}>{song.id}</TableData>
                       <TableData style={{ width: "55%", textAlign: "left" }}>

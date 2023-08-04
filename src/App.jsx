@@ -11,7 +11,7 @@ import musicBachPrelude from "./audio/BachPrelude.mp3";
 
 function App() {
 
-  const [audioplay, setAudioPlay] = useState(musicOnAndOn);
+  const [audioplay, setAudioPlay] = useState(musicEarlySummer);
 
   const onChangePlayList = function (event) {
     if (event.target.value === "EarlySummer") {
@@ -36,8 +36,8 @@ function App() {
           <InfoImg></InfoImg>
           <AudioPlayer controls loop src={audioplay} type="audio/mpeg"></AudioPlayer>
           <Playlist onChange={onChangePlayList}>
-            <PlaylistValue value="OnAndOn">On and On  🎵</PlaylistValue>
             <PlaylistValue value="EarlySummer">Early Summer  🎵</PlaylistValue>
+            <PlaylistValue value="OnAndOn">On And On  🎵</PlaylistValue>
             <PlaylistValue value="BachPrelude">Bach Prelude  🎵</PlaylistValue>
           </Playlist>
         </SideContents>

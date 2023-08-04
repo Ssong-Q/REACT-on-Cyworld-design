@@ -7,6 +7,7 @@
 23.08.04: 수정, 확인 버튼 전환 기능 
           버튼 클릭 시 <input>, <div>변환 기능
           체크박스 선택 후 삭제 버튼 클릭 시 제목, 아티스트 텍스트 삭제
+          체크박스 전체 선택 기능
 
 <To Do>
 -Member4 페이지 사진 넣기 [V]
@@ -14,28 +15,36 @@
 -플레이리스트 노래 추가 버튼(+버튼 클릭 시 입력 박스) [V]
 -플레이리스트 노래 확인 버튼(+버튼 클릭 시 텍스트 박스) [V]
 -플레이리스트 노래 삭제 버튼(+체크박스로 삭제) [V]
+-체크박스 전체 선택 기능 [V]
+-노래 제목, 아티스트 작성한 내용 로컬 저장 기능
 -플레이리스트 <input>박스 있을 때와 없을 때, 위치 및 높이 변화 문제 해결하기
--?삭제 버튼을 수정 버튼을 눌렀을 때만 사용 가능하게 할 것인가? 
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "@emotion/styled";
 import outerboxImage from "../images/outerbox.png";
 import myphotoImage from "../images/youjin.png";
 import { useNavigate } from 'react-router-dom';
+//import React, { useState } from 'react';
 
 function Member4() {
   const navigate = useNavigate();
 
   const [checked, setChecked] = useState([]);
   const [editing, setEditing] = useState(false);
-  const [songs, setSongs] = useState([
-    { id: 1, songTitle: '', artistName: '' },
-    { id: 2, songTitle: '', artistName: '' },
-    { id: 3, songTitle: '', artistName: '' },
-    { id: 4, songTitle: '', artistName: '' },
-    { id: 5, songTitle: '', artistName: '' },
-  ]);
+
+  const loadSongsFromLocalStorage = () => {
+    const storedSongs = localStorage.getItem('songs');
+    return storedSongs ? JSON.parse(storedSongs) : [
+      { id: 1, songTitle: '', artistName: '' },
+      { id: 2, songTitle: '', artistName: '' },
+      { id: 3, songTitle: '', artistName: '' },
+      { id: 4, songTitle: '', artistName: '' },
+      { id: 5, songTitle: '', artistName: '' },
+    ];
+  };
+
+  const [songs, setSongs] = useState(loadSongsFromLocalStorage);
 
   const menuHome = () => {
     document.getElementById("navHome").style = "color: black; background-color: white;"
@@ -104,6 +113,14 @@ function Member4() {
     );
     setChecked([]);
   };
+
+  const saveSongsToLocalStorage = (songs) => {
+    localStorage.setItem('songs', JSON.stringify(songs));
+  };
+
+  useEffect(() => {
+    saveSongsToLocalStorage(songs);
+  }, [songs]);
 
   return (
     <Outerbox>

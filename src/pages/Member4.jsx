@@ -8,16 +8,7 @@
           수정, 확인 버튼 클릭 시 <input>, <div>변환 기능
           체크박스 전체 선택 기능 및 선택 후 삭제 버튼 클릭 시 제목, 아티스트 텍스트 삭제
           플레이리스트 input한 내용 로컬디스크에 저장 기능
-
-<To Do>
--Member4 페이지 사진 넣기 [V]
--플레이리스트 노래 목록 작성 기능 [V]
--플레이리스트 노래 추가 버튼(+버튼 클릭 시 입력 박스) [V]
--플레이리스트 노래 확인 버튼(+버튼 클릭 시 텍스트 박스) [V]
--플레이리스트 노래 삭제 버튼(+체크박스로 삭제) [V]
--체크박스 전체 선택 기능 [V]
--노래 제목, 아티스트 작성한 내용 로컬 저장 기능 [V]
--플레이리스트 <input>박스 있을 때와 없을 때, 위치 및 높이 변화 문제 해결하기
+23.08.05: 플레이리스트 왼쪽 정렬 디자인 수정
 */
 
 import React, { useState, useEffect } from 'react';
@@ -212,7 +203,7 @@ function Member4() {
                           onChange={() => handleCheckboxToggle(song.id)} />
                       </TableData>
                       <TableData style={{ width: "12%", textAlign: "center" }}>{song.id}</TableData>
-                      <TableData style={{ width: "55%", textAlign: "left" }}>
+                      <TableData style={{ width: "55%", textAlign: "left", padding: "0px 0px 0px 15px" }}>
                         {editing ? (
                           <input
                             type="text"
@@ -229,7 +220,7 @@ function Member4() {
                           <div>{song.songTitle}</div>
                         )}
                       </TableData>
-                      <TableData style={{ width: "25%", textAlign: "left" }}>
+                      <TableData style={{ width: "30%", textAlign: "left", padding: "0px 0px 0px 10px"  }}>
                         {editing ? (
                           <input
                             type="text"
